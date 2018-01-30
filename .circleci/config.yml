@@ -44,7 +44,8 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python3 -m unittest discover -vp '*_test.py' -s `pwd`
+            python3  -m unittest discover -s tests/unit -vp '*_test.py'
+
 
       - store_artifacts:
           path: test-reports
