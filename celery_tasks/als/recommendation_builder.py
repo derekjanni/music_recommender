@@ -43,31 +43,6 @@ _SQL = {
     """
 }
 
-
-_SQL = {
-    'get_entity_training_data':"""
-        select
-            user_id,
-            {0}_id,
-            count
-        from (
-            select
-                user_id,
-                {0}_id,
-                count(*)
-            from fact_tables.usage_facts
-            group by user_id, {0}_id
-        ) as t
-        where count > %(threshold)s
-	and {0}_id is not null
-        group by
-            t.user_id,
-            t.{0}_id,
-            t.count
-    """
-}
-
-
 def train_model(
         df,
         plays,
